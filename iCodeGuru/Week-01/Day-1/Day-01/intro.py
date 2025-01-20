@@ -131,3 +131,5 @@ print(array1) # array('i', [0, 1 , 2, 44, 3 , 4, 2])
 array1.pop()
 # array1.pop(0)  we can also specify the index
 print(array1)  # array('i', [0, 1 , 2, 44, 3 , 4])
+
+# https://web.facebook.com/iCodeguru/videos/1234912814237356/
