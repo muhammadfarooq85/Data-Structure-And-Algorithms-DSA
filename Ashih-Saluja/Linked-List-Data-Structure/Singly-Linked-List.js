@@ -69,16 +69,71 @@ class LinkedList {
     if (this.head === null) {
       return "No items in the linked list!";
     }
+
     let currentNode = this.head;
     while (currentNode.next !== null) {
-      currentNode = currentNode.next;
-      console.log(currentNode);
+      return (currentNode = currentNode.next);
     }
+  }
+
+  deleteByValue(dataToDelete) {
+    if (this.head === null) {
+      return "No items in the linked list!";
+    }
+
+    let currentNode = this.head;
+    while (currentNode.data === dataToDelete) {
+      return (this.head = currentNode.next);
+    }
+
+    let previousNode = null;
+    while (currentNode.next !== null) {
+      previousNode = currentNode;
+      currentNode = currentNode.next;
+      if (currentNode.data === dataToDelete) {
+        return (previousNode.next = currentNode.next);
+      }
+    }
+  }
+
+  search(dataToSearch) {
+    if (this.head === null) {
+      return "No items in the linked list!";
+    }
+    let currentNode = this.head;
+    if (currentNode.data === dataToSearch) {
+      return true;
+    }
+
+    while (currentNode.next !== null) {
+      currentNode = currentNode.next;
+      if (currentNode.next === dataToSearch) {
+        return true;
+      }
+    }
+    return false;
+  }
+  
+  length() {
+    if (this.head === null) {
+      return 0;
+    }
+    let currentNode = this.head;
+    let count = 1;
+    while (currentNode.next !== null) {
+      currentNode = currentNode.next;
+      count++;
+    }
+    return count;
   }
 }
 
 const linkedList = new LinkedList();
 console.log(linkedList.insertAtData(1));
 console.log(linkedList.insertAtData(2));
-console.log(linkedList.insertAtData(3));
-console.log(linkedList.traverse());
+// console.log(linkedList.insertAtData(3));
+// console.log(linkedList.traverse());
+// console.log(linkedList.deleteByValue(2));
+// console.log(linkedList.traverse());
+console.log(linkedList.search(2));
+console.log(linkedList.length());
