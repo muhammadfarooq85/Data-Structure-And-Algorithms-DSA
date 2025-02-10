@@ -70,4 +70,108 @@ class useDoublyLinkedList {
       currentNode = currentNode.next;
     } while (currentNode !== null);
   }
+
+  // traverseFromStart() {
+  //   if (this.head === null) {
+  //     return "No items in the linked list!";
+  //   }
+
+  //   let currentNode = this.head;
+  //   do {
+  //     console.log(currentNode.data);
+  //     currentNode = currentNode.next;
+  //   } while (currentNode !== null);
+  // }
+
+  traverseFromEnd() {
+    if (this.head === null) {
+      return "No items in the linked list!";
+    }
+
+    let currentNode = this.tail;
+    do {
+      console.log(currentNode.data);
+      currentNode = currentNode.previous;
+    } while (currentNode !== null);
+  }
+
+  delete(dataToDelete) {
+    if (this.head === null) {
+      return "No items in the linked list!";
+    }
+
+    let currentNode = this.head;
+    while (currentNode !== null) {
+      if (currentNode.data === dataToDelete) {
+        if (currentNode === this.head) {
+          this.head = currentNode.next;
+          if (this.head) {
+            this.head.previous = null;
+          }
+        }
+
+        // Deleting node from middle
+        if (currentNode.previous) {
+          currentNode.previous.next = currentNode.next;
+        }
+
+        if (currentNode.next) {
+          currentNode.next.previous = currentNode.previous;
+        }
+
+        // Deleting node from tail
+        if (currentNode === this.tail) {
+          this.tail = currentNode.previous;
+          if (this.tail) {
+            this.tail.next = null;
+          }
+        }
+
+        return; // Exit after deletion is complete
+      }
+
+      currentNode = currentNode.next;
+    }
+
+    return "Node not found!";
+  }
+
+  search(valueToSearch) {
+    if (this.head === null) {
+      return "No items in the linked list!";
+    }
+
+    let currentNode = this.head;
+    while (currentNode !== null) {
+      if (currentNode.data === valueToSearch) {
+        return true;
+      }
+      currentNode = currentNode.next;
+    }
+    return false;
+  }
+
+  length() {
+    if (this.head == null) {
+      return 0;
+    }
+    let currentNode = this.head;
+    let counter = 0;
+    while (currentNode !== null) {
+      counter++;
+      currentNode = currentNode.next;
+    }
+    return counter;
+  }
 }
+
+const newInstance = new useDoublyLinkedList();
+console.log(newInstance.append(1));
+console.log(newInstance.append(2));
+console.log(newInstance.append(3));
+console.log(newInstance.traverse());
+console.log(newInstance.delete(3));
+console.log(newInstance.search(5));
+console.log(newInstance.length());
+
+// Note:- smjne ki koshih kr rahe hy smjh a jaye.
