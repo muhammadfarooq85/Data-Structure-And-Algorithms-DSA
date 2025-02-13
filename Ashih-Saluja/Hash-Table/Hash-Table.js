@@ -55,11 +55,36 @@ class useHashTable {
   }
 
   set(key, value) {
+    if (this.hashTable.length > this.maxSize) {
+      return `Length of hash table must be ${this.maxSize}`;
+    }
     const hashKey = this.hash(key);
+    if (!this.hashTable[hashKey]) {
+      this.hashTable[hashKey] = [];
+    }
     this.hashTable[hashKey].push([key, value]);
-    console.log(this.hashTable);
+  }
+
+  get(key) {
+    if (this.hashTable.length === 0) {
+      return "Hashtable is empty!";
+    }
+
+    const hashKey = this.hash(key);
+    let result = this.hashTable[hashKey];
+    for (let pair of result) {
+      if (pair[0] === key) {
+        return pair[1];
+      }
+    }
+    return "No data found with this key!";
   }
 }
 
 const UseHashTable = new useHashTable();
 console.log(UseHashTable.set("name", "farooq"));
+console.log(UseHashTable.set("naem", "ahmed"));
+console.log(UseHashTable.get("name"));
+
+// usage of hashtable
+// used for fast lookups, insertion and deletion
