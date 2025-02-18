@@ -44,6 +44,29 @@ class UseBinaryTree {
       }
     }
   }
+
+  search(value) {
+    if (this.root === null) {
+      return false;
+    }
+
+    const qeue = [this.root];
+    while (qeue.length > 0) {
+      const current = qeue.shift();
+      if (current.data === value) {
+        return true;
+      }
+
+      if (current.left) {
+        qeue.push(current.left);
+      }
+
+      if (current.right) {
+        qeue.push(current.right);
+      }
+    }
+    return false;
+  }
 }
 
 const useBinaryTree = new UseBinaryTree();
@@ -52,3 +75,5 @@ console.log(useBinaryTree.add("hello1..."));
 console.log(useBinaryTree.add("hello2..."));
 console.log(useBinaryTree.add("hello3..."));
 console.log(useBinaryTree.add("hello4..."));
+console.log("finding hello1...", useBinaryTree.search("hello1...")); // true
+console.log("finding hello6...", useBinaryTree.search("hello6...")); // false
