@@ -67,6 +67,26 @@ class UseBinaryTree {
     }
     return false;
   }
+
+  levelOrder() {
+    if (!this.root) {
+      return;
+    }
+    const qeue = [this.root];
+
+    while (qeue.length > 0) {
+      const current = qeue.shift();
+
+      console.log(current.data);
+      if (!current.left) {
+        qeue.push(current.left);
+      }
+
+      if (!current.right) {
+        qeue.push(current.right);
+      }
+    }
+  }
 }
 
 const useBinaryTree = new UseBinaryTree();
@@ -77,3 +97,6 @@ console.log(useBinaryTree.add("hello3..."));
 console.log(useBinaryTree.add("hello4..."));
 console.log("finding hello1...", useBinaryTree.search("hello1...")); // true
 console.log("finding hello6...", useBinaryTree.search("hello6...")); // false
+
+console.log("level ordering...");
+console.log(useBinaryTree.levelOrder());
