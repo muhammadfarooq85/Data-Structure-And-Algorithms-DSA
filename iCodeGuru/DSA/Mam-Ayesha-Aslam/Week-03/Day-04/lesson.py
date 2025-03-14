@@ -1,0 +1,1 @@
+# Yesterday we discussed about stack and solved leetcode problems related to stack on leetcode. Where i also presented two problems.
