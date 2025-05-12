@@ -37,7 +37,7 @@
 // we will remove the root element and take the last node to root then also compare
 // swap if needed
 
-class maxHeap {
+class MaxHeap {
     constructor() {
         this.heap = [];
     }
@@ -63,4 +63,73 @@ class maxHeap {
         // [this.heap[index1], this.heap[index2]] = [this.heap[index2], this.heap[index1]]
     }
 
+    add(value) {
+        this.heap.push(value);
+        this.bubbleUp(this.heap.length - 1);
+    }
+
+    bubbleUp(index) {
+        let parentIndex = this.getParentIndex(index);
+        while (index > 0 && (this.heap[index] > this.heap[parentIndex])) {
+            this.swap(index, parentIndex);
+            index = parentIndex;
+            parentIndex = this.getParentIndex(index)
+        }
+    }
+
+    remove() {
+        if (this.heap.length === 0) {
+            return null;
+        }
+        if (this.heap.length === 1) {
+            return this.heap[0];
+        }
+
+        const firstValue = this.heap[0];
+        this.heap[0] = this.heap.pop();
+        this.bubbleDown(0)
+        return firstValue;
+    }
+
+    bubbleDown(index) {
+        let largest = index;
+        let leftChild = this.getLeftChild(index);
+        let rightChild = this.getRightChild(index);
+        if (leftChild < this.heap.length && this.heap[leftChild] > this.heap[largest]) {
+            largest = leftChild;
+        } if (leftChild < this.heap.length && this.heap[rightChild] > this.heap[largest]) {
+            largest = rightChild;
+        }
+
+        if (largest !== index) {
+            this.swap(largest, index);
+            this.bubbleDown(largest);
+        }
+    }
+
+    peek() {
+        if (this.heap.length === 0) {
+            return null
+        }
+        return this.heap[0]
+    }
+
+    size() {
+        return this.heap.length
+    }
+
+    print() {
+        console.log(this.heap);
+
+    }
 }
+
+const maxHeap = new MaxHeap()
+maxHeap.add(10)
+maxHeap.add(15)
+maxHeap.add(5)
+maxHeap.add(7)
+maxHeap.add(40)
+maxHeap.add(50)
+maxHeap.add(60)
+maxHeap.print()
