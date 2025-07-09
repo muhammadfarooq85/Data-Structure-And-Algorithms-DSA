@@ -103,3 +103,30 @@ function selectionSort(arr) {
   return arr;
 }
 console.log(selectionSort([64, 25, 12, 22, 11])); // [ 11, 12, 22, 25, 64 ]
+
+// Insertion Sort Algorithm:-
+// Insertion sort is a simple sorting algorithm that works by iteratively inserting each element of an unsorted list into its correct position in a sorted portion of the list. It is like sorting playing cards in your hands. You split the cards into two groups: the sorted cards and the unsorted cards. Then, you pick a card from the unsorted group and put it in the right place in the sorted group.
+
+// How it works:-
+
+// We start with the second element of the array as the first element is assumed to be sorted.
+// Compare the second element with the first element if the second element is smaller then swap them.
+// Move to the third element, compare it with the first two elements, and put it in its correct position
+// Repeat until the entire array is sorted.
+
+function insertionSort(arr) {
+  for (let i = 1; i < arr.length; i++) {
+    // current element
+    let key = arr[i];
+    // previous ones
+    let j = i - 1;
+    // we are comparing if any previous is greator if greater then swap them
+    while (j >= 0 && arr[j] > key) {
+      arr[j + 1] = arr[j];
+      j = j - 1;
+    }
+    // if nothing happens then array elements remain at their positions
+    arr[j + 1] = key;
+  }
+}
+console.log(insertionSort([12, 11, 13, 5, 6])); // [ 5, 6, 11, 12, 13 ]
