@@ -1,0 +1,15 @@
+# VS Code settings
+.vscode/
+
+# Compiled object files
+*.o
+*.a
+*.out
+*.exe
+
+# Debugging files
+*.gdb
+*.db
+
+# Other unnecessary files
+*~
